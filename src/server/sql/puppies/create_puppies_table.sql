@@ -10,6 +10,3 @@ CREATE TABLE pups (
   age INTEGER,
   sex VARCHAR
 );
-
-INSERT INTO pups (name, breed, age, sex)
-  VALUES ('Tyler', 'Retrieved', 3, 'M');

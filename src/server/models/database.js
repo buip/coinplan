@@ -6,9 +6,12 @@ const options = {
 };
 
 const path = require('path');
+const config = require('../config');
 const pgp = require('pg-promise')(options);
-const connectionString = 'postgres://localhost:5432/puppies';
-const db = pgp(connectionString);
+// const connectionString = 'postgres://localhost:5432/puppies';
+const db = pgp(config.database);
+// const db = pgp(connectionString);
+
 
 const sqlFilesDir = path.join(__dirname, '..', 'sql');
 

@@ -43,13 +43,13 @@ class Puppies {
      * Returns a promise to insert this user into the database
      * @returns {Promise.<>}
      */
-    // async insert() {
-    //     const user = this;
-    //     if (user.id !== undefined) {
-    //         throw new Error('Attempted to insert a user that already has an ID');
-    //     }
-    //     return await db.none(sqlFile('user/insert_new_user.sql'), user);
-    // }
+    async insert() {
+        const puppy = this;
+        if (puppy.id !== undefined) {
+            throw new Error('Attempted to insert a user that already has an ID');
+        }
+        return await db.none(sqlFile('user/insert_new_puppy.sql'), puppy);
+    }
 }
 
 module.exports = Puppies;

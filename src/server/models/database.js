@@ -38,7 +38,9 @@ function sqlFile(filePath) {
 async function createSchema() {
     // We need to require these here instead of at the top to prevent circular dependency issues.
     /* eslint-disable global-require */
+    const User = require('./User');
     const Puppies = require('./Puppies');
+    await User.createTable();
     await Puppies.createTable();
 }
 

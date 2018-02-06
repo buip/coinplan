@@ -23,11 +23,11 @@ console.log()
 
 // Database configuration is taken from environment variables (which are loaded by dotenv from the .env file)
 config.database = {
-    user: process.env.OED_DB_USER,
-    database: process.env.OED_DB_DATABASE,
-    password: process.env.OED_DB_PASSWORD,
-    host: process.env.OED_DB_HOST,
-    port: process.env.OED_DB_PORT
+    user: process.env.COINPLAN_DB_USER,
+    database: process.env.COINPLAN_DB_DATABASE,
+    password: process.env.COINPLAN_DB_PASSWORD,
+    host: process.env.COINPLAN_DB_HOST,
+    port: process.env.COINPLAN_DB_PORT
 };
 
 // config.secretToken = process.env.OED_TOKEN_SECRET;

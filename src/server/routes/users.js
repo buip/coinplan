@@ -6,6 +6,7 @@ const express = require('express');
 const User = require('../models/User');
 const validate = require('jsonschema').validate;
 const authenticator = require('./authenticator');
+const { log }= require('../log');
 
 const router = express.Router();
 

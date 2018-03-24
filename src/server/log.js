@@ -41,6 +41,8 @@ class Logger {
      * @param {Error?} error An optional error object to provide a stacktrace
      */
     log(level, message, error = null) {
+        console.log(message);
+        console.log(error);
         // Only log if given a high enough priority level.
         if (level.priority > this.level.priority) {
             return;

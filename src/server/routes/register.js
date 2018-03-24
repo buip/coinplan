@@ -40,8 +40,10 @@ router.post('/', async (req, res) => {
             await user.insert();
             res.sendStatus(200);
         } catch (err) {
-            res.sendStatus(400);
-            res.json(err);
+            res.status(400).send({
+                success: false,
+                message: 'Error while creating user.'
+            });
         }
     }
 });

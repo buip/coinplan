@@ -27,7 +27,7 @@ config.database = {
     port: process.env.COINPLAN_DB_PORT
 };
 
-config.secretToken = process.env.OED_TOKEN_SECRET;
+config.secretToken = process.env.COINPLAN_TOKEN_SECRET;
 // config.serverPort = process.env.OED_SERVER_PORT;
 // config.logFile = process.env.OED_LOG_FILE || 'log.txt';
 

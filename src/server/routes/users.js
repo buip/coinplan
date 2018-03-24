@@ -5,6 +5,7 @@
 const express = require('express');
 const User = require('../models/User');
 const validate = require('jsonschema').validate;
+const authenticator = require('./authenticator');
 
 const router = express.Router();
 
@@ -16,9 +17,12 @@ router.get('/', async (req, res) => {
         const rows = await User.getAll();
         res.json(rows);
     } catch (err) {
-        log.error(`Error while performing GET all users query: ${err}`, err);
+        console.log(err);
+        // log.error(`Error while performing GET all users query: ${err}`, err);
     }
 });
+
+router.use(authenticator);
 
 /**
  * Route for getting a specific user by ID
@@ -30,8 +34,8 @@ router.get('/:user_id', async (req, res) => {
         maxProperties: 1,
         required: ['user_id'],
         properties: {
-            group_id: {
-                type: 'id'
+            user_id: {
+                type: 'string'
             }
         }
     };

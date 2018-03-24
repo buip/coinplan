@@ -51,6 +51,7 @@ router.post('/', async (req, res) => {
                 res.status(401).send({ text: 'Not authorized' });
             } else {
                 res.status(500).send({ text: 'Internal Server Error' });
+                console.log(err);
             }
         }
     }

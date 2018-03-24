@@ -35,7 +35,7 @@ class User {
      */
     static async getByID(id) {
         const row = await db.one(sqlFile('user/get_user_by_id.sql'), { id: id });
-        return new User(row.id, row.email);
+        return new User(row.id, row.name, row.email);
     }
 
     /**
@@ -55,7 +55,7 @@ class User {
      */
     static async getAll() {
         const rows = await db.any(sqlFile('user/get_all_users.sql'));
-        return rows.map(row => new User(row.id, row.email));
+        return rows.map(row => new User(row.id, row.name, row.email));
     }
 
     /**

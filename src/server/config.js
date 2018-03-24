@@ -16,6 +16,8 @@ try {
     // console.log("Couldn't load a .env file");
 }
 
+const config = {};
+
 // Database configuration is taken from environment variables (which are loaded by dotenv from the .env file)
 config.database = {
     user: process.env.COINPLAN_DB_USER,

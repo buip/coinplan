@@ -4,7 +4,6 @@
 
 const express = require('express');
 const User = require('../models/User');
-const { log } = require('../log');
 const validate = require('jsonschema').validate;
 
 const router = express.Router();

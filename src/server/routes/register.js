@@ -5,11 +5,11 @@ const validate = require('jsonschema').validate;
 
 const router = express.Router();
 
-router.post('users', async (req, res) => {
+router.post('/', async (req, res) => {
 
     const validParams = {
         type: 'object',
-        maxProperties: 2,
+        maxProperties: 3,
         required: ['name', 'email', 'password'],
         properties: {
             name: {
@@ -34,15 +34,16 @@ router.post('users', async (req, res) => {
         const name = req.body.name;
         const email = req.body.email;
         const password = req.body.password;
-        const user = new User(undefind, name, email, bcrypt.hashSync(password, 10));
+        const user = new User(undefined, name, email, bcrypt.hashSync(password, 10));
 
         try {
             await user.insert();
+            res.sendStatus(200);
         } catch (err) {
-            res.status(err.status).json(
-                {
-                    message: err.message
-                });
+            res.sendStatus(400);
+            res.json(err);
         }
     }
 });
+
+module.exports = router;

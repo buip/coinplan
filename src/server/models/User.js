@@ -67,7 +67,7 @@ class User {
         if (user.id !== undefined) {
             throw new Error('Attempted to insert a user that already has an ID');
         }
-        return await db.none(sqlFile('user/insert_new_user.sql'), user);
+        return await db.none(sqlFile('users/insert_new_user.sql'), user);
     }
 }
 

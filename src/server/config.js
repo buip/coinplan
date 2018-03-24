@@ -16,11 +16,6 @@ try {
     // console.log("Couldn't load a .env file");
 }
 
-
-const config = {};
-
-console.log()
-
 // Database configuration is taken from environment variables (which are loaded by dotenv from the .env file)
 config.database = {
     user: process.env.COINPLAN_DB_USER,
@@ -30,7 +25,7 @@ config.database = {
     port: process.env.COINPLAN_DB_PORT
 };
 
-// config.secretToken = process.env.OED_TOKEN_SECRET;
+config.secretToken = process.env.OED_TOKEN_SECRET;
 // config.serverPort = process.env.OED_SERVER_PORT;
 // config.logFile = process.env.OED_LOG_FILE || 'log.txt';
 

@@ -13,8 +13,9 @@ class User {
      * @param email This user's email
      * @param passwordHash The user's passwordHash
      */
-    constructor(id, email, passwordHash) {
+    constructor(id, name, email, passwordHash) {
         this.id = id;
+        this.name = name;
         this.email = email;
         this.passwordHash = passwordHash;
     }
@@ -45,7 +46,7 @@ class User {
      */
     static async getByEmail(email) {
         const row = await db.one(sqlFile('user/get_user_by_email.sql'), { email: email });
-        return new User(row.id, row.email, row.password_hash);
+        return new User(row.id, row.name, row.email, row.password_hash);
     }
 
     /**

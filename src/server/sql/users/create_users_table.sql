@@ -6,5 +6,8 @@ CREATE TABLE IF NOT EXISTS users(
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(254) NOT NULL,
   email VARCHAR(254) UNIQUE NOT NULL,
-  password_hash CHAR(60) NOT NULL
+  password_hash CHAR(60) NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW() NOT NULL,
+  temp_token CHAR(60),
+  temp_token_time TIMESTAMP DEFAULT NOW()
 )

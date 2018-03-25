@@ -10,14 +10,19 @@ const sqlFile = database.sqlFile;
 class User {
     /**
      * @param id This users's ID. Should be undefined if the user is being newly created
+     * @param name
      * @param email This user's email
      * @param passwordHash The user's passwordHash
+     * @param tempToken is the token send to user's email to reset password
+     * @param tempTokenTime is the time that password reset token expires
      */
-    constructor(id, name, email, passwordHash) {
+    constructor(id, name, email, passwordHash, tempToken, tempTokenTime) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.passwordHash = passwordHash;
+        this.tempToken = tempToken;
+        this.tempTokenTime = tempTokenTime;
     }
 
     /**

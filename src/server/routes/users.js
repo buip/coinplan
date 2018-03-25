@@ -4,9 +4,9 @@
 
 const express = require('express');
 const User = require('../models/User');
-const validate = require('jsonschema').validate;
+const { validate } = require('jsonschema');
 const authenticator = require('./authenticator');
-const { log }= require('../log');
+const { log } = require('../log');
 
 const router = express.Router();
 
@@ -14,12 +14,12 @@ const router = express.Router();
  * Route for getting all users
  */
 router.get('/', async (req, res) => {
-    try {
-        const rows = await User.getAll();
-        res.json(rows);
-    } catch (err) {
-        log.error(`Error while performing GET all users query: ${err}`, err);
-    }
+	try {
+		const rows = await User.getAll();
+		res.json(rows);
+	} catch (err) {
+		log.error(`Error while performing GET all users query: ${err}`, err);
+	}
 });
 
 router.use(authenticator);
@@ -29,27 +29,27 @@ router.use(authenticator);
  * @param user_id
  */
 router.get('/:user_id', async (req, res) => {
-    const validParams = {
-        type: 'object',
-        maxProperties: 1,
-        required: ['user_id'],
-        properties: {
-            user_id: {
-                type: 'string'
-            }
-        }
-    };
-    if (!validate(req.params, validParams).valid) {
-        res.sendStatus(400);
-    } else {
-        try {
-            const rows = await User.getByID(req.params.user_id);
-            res.json(rows);
-        } catch (err) {
-            log.info('Error while performing GET specific user by id query:', err);
-            res.sendStatus(500);
-        }
-    }
+	const validParams = {
+		type: 'object',
+		maxProperties: 1,
+		required: ['user_id'],
+		properties: {
+			user_id: {
+				type: 'string'
+			}
+		}
+	};
+	if (!validate(req.params, validParams).valid) {
+		res.sendStatus(400);
+	} else {
+		try {
+			const rows = await User.getByID(req.params.user_id);
+			res.json(rows);
+		} catch (err) {
+			log.info('Error while performing GET specific user by id query:', err);
+			res.sendStatus(500);
+		}
+	}
 });
 
 module.exports = router;

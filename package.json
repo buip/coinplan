@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./src/bin/www"
+    "start": "nodemon ./src/bin/www",
+    "lint": "./node_modules/.bin/eslint src/server/**/*.js src/server/*.js"
   },
   "dependencies": {
     "axios": "^0.17.1",
@@ -23,5 +24,12 @@
     "passport": "^0.4.0",
     "pg-promise": "^7.4.1",
     "serve-favicon": "~2.4.5"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0"
   }
 }

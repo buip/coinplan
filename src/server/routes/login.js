@@ -6,8 +6,8 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-const secretToken = require('../config').secretToken;
-const validate = require('jsonschema').validate;
+const { secretToken } = require('../config');
+const { validate } = require('jsonschema');
 
 const router = express.Router();
 
@@ -17,44 +17,43 @@ const router = express.Router();
  * @param {String} Password
  */
 router.post('/', async (req, res) => {
-    const validParams = {
-        type: 'object',
-        maxProperties: 2,
-        required: ['email', 'password'],
-        properties: {
-            email: {
-                type: 'string',
-                minLength: 3,
-                maxLength: 254
-            },
-            password: {
-                type: 'string',
-                minLength: 3
-            }
-        }
-    };
+	const validParams = {
+		type: 'object',
+		maxProperties: 2,
+		required: ['email', 'password'],
+		properties: {
+			email: {
+				type: 'string',
+				minLength: 3,
+				maxLength: 254,
+			},
+			password: {
+				type: 'string',
+				minLength: 3,
+			},
+		},
+	};
 
-    if (!validate(req.body, validParams).valid) {
-        res.sendStatus(400);
-    } else {
-        try {
-            const user = await User.getByEmail(req.body.email);
-            const isValid = await bcrypt.compare(req.body.password, user.passwordHash);
-            if (isValid) {
-                const token = jwt.sign({ data: user.id }, secretToken, { expiresIn: 86400 });
-                res.json({ token: token });
-            } else {
-                throw new Error('Unauthorized password');
-            }
-        } catch (err) {
-            if (err.message === 'Unauthorized password' || err.message === 'No data returned from the query.') {
-                res.status(401).send({ text: 'Not authorized' });
-            } else {
-                res.status(500).send({ text: 'Internal Server Error' });
-                console.log(err);
-            }
-        }
-    }
+	if (!validate(req.body, validParams).valid) {
+		res.sendStatus(400);
+	} else {
+		try {
+			const user = await User.getByEmail(req.body.email);
+			const isValid = await bcrypt.compare(req.body.password, user.passwordHash);
+			if (isValid) {
+				const token = jwt.sign({ data: user.id }, secretToken, { expiresIn: 86400 });
+				res.json({ token });
+			} else {
+				throw new Error('Unauthorized password');
+			}
+		} catch (err) {
+			if (err.message === 'Unauthorized password' || err.message === 'No data returned from the query.') {
+				res.status(401).send({ text: 'Not authorized' });
+			} else {
+				res.status(500).send({ text: 'Internal Server Error' });
+			}
+		}
+	}
 });
 
 module.exports = router;

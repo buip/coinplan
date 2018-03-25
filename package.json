@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./src/bin/www",
+    "createdb": "node ./src/server/services/createDB.js",
     "lint": "./node_modules/.bin/eslint src/server/**/*.js src/server/*.js"
   },
   "dependencies": {

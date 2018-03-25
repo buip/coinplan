@@ -1,13 +1,14 @@
 const promise = require('bluebird');
 
 const options = {
-    // Initialization Options
-    promiseLib: promise
+	// Initialization Options
+	promiseLib: promise
 };
 
 const path = require('path');
 const config = require('../config');
 const pgp = require('pg-promise')(options);
+
 const db = pgp(config.database);
 
 const sqlFilesDir = path.join(__dirname, '..', 'sql');
@@ -24,11 +25,11 @@ const loadedSqlFiles = {};
  * @returns {pgPromise.QueryFile}
  */
 function sqlFile(filePath) {
-    const sqlFilePath = path.join(sqlFilesDir, filePath);
-    if (loadedSqlFiles[sqlFilePath] === undefined) {
-        loadedSqlFiles[sqlFilePath] = new pgp.QueryFile(path.join(sqlFilesDir, filePath), { minify: true });
-    }
-    return loadedSqlFiles[sqlFilePath];
+	const sqlFilePath = path.join(sqlFilesDir, filePath);
+	if (loadedSqlFiles[sqlFilePath] === undefined) {
+		loadedSqlFiles[sqlFilePath] = new pgp.QueryFile(path.join(sqlFilesDir, filePath), { minify: true });
+	}
+	return loadedSqlFiles[sqlFilePath];
 }
 
 /**
@@ -36,17 +37,15 @@ function sqlFile(filePath) {
  * @return {Promise<void>}
  */
 async function createSchema() {
-    // We need to require these here instead of at the top to prevent circular dependency issues.
-    /* eslint-disable global-require */
-    const User = require('./User');
-    const Puppies = require('./Puppies');
-    await User.createTable();
-    await Puppies.createTable();
+	// We need to require these here instead of at the top to prevent circular dependency issues.
+	/* eslint-disable global-require */
+	const User = require('./User');
+	await User.createTable();
 }
 
 module.exports = {
-    db,
-    sqlFile,
-    createSchema,
-    pgp,
+	db,
+	sqlFile,
+	createSchema,
+	pgp,
 };

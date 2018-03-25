@@ -9,22 +9,22 @@ const dotenv = require('dotenv');
 
 const envPath = path.join(__dirname, '..', '..', '.env');
 try {
-    fs.accessSync(envPath);
-    dotenv.config({ path: envPath });
+	fs.accessSync(envPath);
+	dotenv.config({ path: envPath });
 } catch (err) {
-    // TODO: Check if valid env variables are actually loaded despite the lack of a file, only log if they are not
-    // console.log("Couldn't load a .env file");
+	// TODO: Check if valid env variables are actually loaded despite the lack of a file, only log if they are not
+	// console.log("Couldn't load a .env file");
 }
 
 const config = {};
 
 // Database configuration is taken from environment variables (which are loaded by dotenv from the .env file)
 config.database = {
-    user: process.env.COINPLAN_DB_USER,
-    database: process.env.COINPLAN_DB_DATABASE,
-    password: process.env.COINPLAN_DB_PASSWORD,
-    host: process.env.COINPLAN_DB_HOST,
-    port: process.env.COINPLAN_DB_PORT
+	user: process.env.COINPLAN_DB_USER,
+	database: process.env.COINPLAN_DB_DATABASE,
+	password: process.env.COINPLAN_DB_PASSWORD,
+	host: process.env.COINPLAN_DB_HOST,
+	port: process.env.COINPLAN_DB_PORT
 };
 
 config.secretToken = process.env.COINPLAN_TOKEN_SECRET;

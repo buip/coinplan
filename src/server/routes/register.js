@@ -37,9 +37,15 @@ router.post('/', async (req, res) => {
 			await user.insert();
 			res.sendStatus(200);
 		} catch (err) {
+			let message;
+			if (err.code === 23505) {
+				message = 'User already exists';
+			} else {
+				message = 'Error while creating user';
+			}
 			res.status(400).send({
 				success: false,
-				message: 'Error while creating user.'
+				message: message
 			});
 		}
 	}

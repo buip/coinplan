@@ -36,7 +36,6 @@ module.exports = {
         "react/sort-comp": ["off"],
         "react/sort-prop-types": "off",
         "react/prop-types": "off",
-        "react/jsx-space-before-closing": ["warn"],
 
         "jsx-a11y/img-has-alt": "off",
         "jsx-a11y/img-redundant-alt": "off",

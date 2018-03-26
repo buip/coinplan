@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./src/bin/www",
+    "test": "./node_modules/.bin/mocha \"src/server/test/**/*.js\" --exit",
     "createdb": "node ./src/server/services/createDB.js",
     "lint": "./node_modules/.bin/eslint src/server/**/*.js src/server/*.js"
   },
@@ -28,6 +29,7 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.9.0",

@@ -1,6 +1,5 @@
 # coinplan
 
 <img>
-[![Build Status](https://coinplan.visualstudio.com/_apis/public/build/definitions/65273992-2708-4c48-b368-2abc071bb514/1/badge)](https://coinplan.visualstudio.com/coinplan/_build/index?definitionId=1)
 </img>
 CoinPlan scrapes cryptocurrency coins price and let users automatically trade coin using their own buying/selling strategy.

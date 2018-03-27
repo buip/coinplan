@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS users(
   email VARCHAR(254) UNIQUE NOT NULL,
   password_hash CHAR(60) NOT NULL,
   created_at TIMESTAMP DEFAULT NOW() NOT NULL,
-  temp_token CHAR(60),
-  temp_token_time TIMESTAMP DEFAULT NOW()
+  auth_token CHAR(60),
+  password_token CHAR(60),
+  password_token_time TIMESTAMP DEFAULT NOW()
 )

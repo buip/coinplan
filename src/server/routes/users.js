@@ -43,7 +43,7 @@ router.get('/:user_id', async (req, res) => {
 		res.sendStatus(400);
 	} else {
 		try {
-			const rows = await User.getByID(req.params.user_id);
+			const rows = await User.getByEmail(req.params.user_id);
 			res.json(rows);
 		} catch (err) {
 			log.info('Error while performing GET specific user by id query:', err);

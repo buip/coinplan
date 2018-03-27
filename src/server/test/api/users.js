@@ -18,7 +18,7 @@ mocha.describe('Test users route', () => {
 	const iEmail = 'test@example.com';
 	const iPassword = bcrypt.hashSync('password', 10);
 	mocha.beforeEach(recreateDB);
-	mocha.beforeEach(async () => {
+	mocha.beforeEach(async done => {
 		await new User(undefined, iName, iEmail, iPassword).insert();
 	});
 	mocha.describe('/GET users', () => {
@@ -38,5 +38,21 @@ mocha.describe('Test users route', () => {
 					}
 				});
 		});
+		// mocha.it('should get a single user by id', done => {
+		// 	request(app)
+		// 		.get(`/api/users/${iEmail}`)
+		// 		.end(async (err, res) => {
+		// 			try {
+		// 				expect(res.statusCode).to.equal(200);
+		// 				// console.log(res.body);
+		// 				// const { name, email } = users[0];
+		// 				// expect(name).to.equal(iName);
+		// 				// expect(email).to.equal(iEmail);
+		// 				done();
+		// 			} catch (e) {
+		// 				done(e);
+		// 			}
+		// 		});
+		// });
 	});
 });

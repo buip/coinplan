@@ -33,7 +33,7 @@ mocha.describe('Test login route', () => {
 			.end(async (err, res) => {
 				try {
 					// noinspection JSAnnotator
-					token = res.header['x-access-token'];
+					const token = res.header['x-access-token'];
 					// noinspection BadExpressionStatementJS
 					expect(token).to.exist;
 					expect(res.statusCode).to.equal(200);

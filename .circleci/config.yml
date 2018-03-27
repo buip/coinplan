@@ -6,8 +6,8 @@ version: 1
 jobs:
   build:
     machine:
-      # specify the version you desire here
-      - image: circleci/node:7.10
+      node:
+        version: 0.10.22
         enviroment:
           COINPLAN_DB_HOST: localhost
           COINPLAN_DB_PORT: 5432

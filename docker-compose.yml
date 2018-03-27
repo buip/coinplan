@@ -17,10 +17,10 @@ services:
             - COINPLAN_DB_USER=coinplan
             - COINPLAN_DB_DATABASE=coinplan
             - COINPLAN_DB_TEST_DATABASE=coinplan_testing
-            - COINPLAN_DB_PASSWORD=coinplan
+            - COINPLAN_DB_PASSWORD=
             - COINPLAN_DB_HOST=database # Docker will set this hostname
             - COINPLAN_DB_PORT=5432
-            - COINPLAN_TOKEN_SECRET=secret
+            - COINPLAN_TOKEN_SECRET=?
             - COINPLAN_LOG_FILE=log.txt
         # Set the correct build environment.
         build: ./

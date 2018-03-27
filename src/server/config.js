@@ -28,8 +28,8 @@ config.database = {
 };
 
 config.secretToken = process.env.COINPLAN_TOKEN_SECRET;
-config.serverPort = process.env.OED_SERVER_PORT;
-config.logFile = process.env.OED_LOG_FILE || 'log.txt';
+config.serverPort = process.env.COINPLAN_SERVER_PORT;
+config.logFile = process.env.COINPLAN_LOG_FILE || 'log.txt';
 config.email = process.env.COINPLAN_PASSWORD_EMAIL;
 
 module.exports = config;

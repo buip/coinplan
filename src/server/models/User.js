@@ -12,16 +12,18 @@ class User {
      * @param name
      * @param email This user's email
      * @param passwordHash The user's passwordHash
-     * @param tempToken is the token send to user's email to reset password
-     * @param tempTokenTime is the time that password reset token expires
+     * @param authToken is the token use to authenticate routes
+     * @param passwordToken is the token send to user's email to reset password
+     * @param passwordTokenTime is the time that password reset token expires
      */
-	constructor(id, name, email, passwordHash, tempToken, tempTokenTime) {
+	constructor(id, name, email, passwordHash, authToken, passwordToken, passwordTokenTime) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.passwordHash = passwordHash;
-		this.tempToken = tempToken;
-		this.tempTokenTime = tempTokenTime;
+		this.authToken = authToken;
+		this.passwordToken = passwordToken;
+		this.passwordTokenTime = passwordTokenTime;
 	}
 
 	/**

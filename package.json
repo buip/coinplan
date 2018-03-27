@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./src/bin/www",
+    "start": "node ./src/bin/www",
     "test": "./node_modules/.bin/mocha \"src/server/test/**/*.js\" --exit",
     "createdb": "node ./src/server/services/createDB.js",
     "lint": "./node_modules/.bin/eslint src/server/**/*.js src/server/*.js"

@@ -2,17 +2,27 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
-version: 1
+version: 2
 jobs:
   build:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:7.10
+    machine:
+      node:
+        version: 8.2.0
+        enviroment:
+          COINPLAN_DB_HOST: localhost
+          COINPLAN_DB_PORT: 5432
+          COINPLAN_TOKEN_SECRET: circle
+          COINPLAN_SERVER_PORT: 3000
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
+      postgres:
+        version: 9.6
+        environment:
+          COINPLAN_DB_TEST_DATABASE: circle_ci_test
+          COINPLAN_DB_PASSWORD: test
+          COINPLAN_DB_USER: test
 
     working_directory: ~/coinplan
 
@@ -25,8 +35,6 @@ jobs:
           - v1-dependencies-{{ checksum "package.json" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
-
-      - run: npm install
 
       - save_cache:
           paths:

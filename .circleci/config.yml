@@ -8,6 +8,11 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/node:7.10
+        enviroment:
+          COINPLAN_DB_HOST: localhost
+          COINPLAN_DB_PORT: 5432
+          COINPLAN_TOKEN_SECRET: circle
+          COINPLAN_SERVER_PORT: 3000
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -20,9 +25,6 @@ jobs:
 
     working_directory: ~/coinplan
 
-#    - env:
-#      - COINPLAN_DB_USER=test COINPLAN_DB_PASSWORD=test COINPLAN_DB_DATABASE=travis_ci_test COINPLAN_DB_TEST_DATABASE=travis_ci_test COINPLAN_DB_HOST=localhost COINPLAN_DB_PORT=5432 COINPLAN_TOKEN_SECRET=travis COINPLAN_SERVER_PORT=3000
-#
 #    - before_script:
 #        # Database
 #      - psql -c 'CREATE DATABASE circle_ci_test' -U postgres

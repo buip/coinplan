@@ -54,15 +54,15 @@ while [ $create_error == 0 ]; do
     sleep 1
     echo "Attempting to create database."
     # Redirect stderr to a file
-    npm run createdb |& tee /tmp/oed.error > /dev/null
+    npm run createdb |& tee /tmp/coinplan.error > /dev/null
     # search the file for the kind of error we can recover from
-    grep -q 'Error: connect ECONNREFUSED' /tmp/oed.error
+    grep -q 'Error: connect ECONNREFUSED' /tmp/coinplan.error
     create_error=$?
 
     # Check loop runtime
     ((tries=tries+1))
     if [ $tries -ge $max_tries ]; then
-        echo "FAILED! Too many tries. Is your database at $OED_DB_HOST:$OED_DB_PORT down?"
+        echo "FAILED! Too many tries. Is your database at $COINPLAN_DB_HOST:$COINPLAN_DB_PORT down?"
         exit 1
     fi
 done

@@ -7,20 +7,17 @@ const request = require('supertest');
 
 const { recreateDB } = require('../db/common');
 const app = require('../../app');
-const User = require('../../models/User');
-const bcrypt = require('bcryptjs');
+
+const { iEmail, iPassword, insertUser } = require('./prepareUser');
 
 const mocha = require('mocha');
 
 const { expect } = chai;
 
 mocha.describe('Test login route', () => {
-	const iName = 'Preston';
-	const iEmail = 'test@example.com';
-	const iPassword = 'password';
 	mocha.beforeEach(recreateDB);
 	mocha.beforeEach(async () => {
-		await new User(undefined, iName, iEmail, bcrypt.hashSync(iPassword, 10)).insert();
+		await insertUser();
 	});
 
 	mocha.it('should login the user ', done => {

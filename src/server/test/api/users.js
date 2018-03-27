@@ -7,24 +7,19 @@ const request = require('supertest');
 const { recreateDB } = require('../db/common');
 const app = require('../../app');
 const User = require('../../models/User');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const { secretToken } = require('../../config');
+const {
+	iName, iEmail, insertUser
+} = require('./prepareUser');
 
 const mocha = require('mocha');
 
 const { expect } = chai;
 
 mocha.describe('Test users route', () => {
-	const iName = 'Phuong Bui';
-	const iEmail = 'test@example.com';
-	const iPassword = bcrypt.hashSync('password', 10);
 	let token;
 	mocha.beforeEach(recreateDB);
 	mocha.beforeEach(async () => {
-		await new User(undefined, iName, iEmail, iPassword).insert();
-		const user = await User.getByEmail(iEmail);
-		token = jwt.sign({ data: user.id }, secretToken, { expiresIn: 86400 });
+		token = await insertUser();
 	});
 	mocha.it('should get all users', done => {
 		request(app)

@@ -7,7 +7,7 @@ jobs:
   build:
     machine:
       node:
-        version: v8.2.0
+        version: 8.2.0
         enviroment:
           COINPLAN_DB_HOST: localhost
           COINPLAN_DB_PORT: 5432

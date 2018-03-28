@@ -1,5 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
 const User = require('../models/User');
 const { validate } = require('jsonschema');
 const { log } = require('../log');
@@ -70,7 +71,7 @@ router.post('/:user_id', async (req, res) => {
 			if (user.length === 0) {
 				throw new Error('User not found');
 			} else {
-
+				const
 			}
 			res.json(rows);
 		} catch (err) {

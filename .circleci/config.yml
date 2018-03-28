@@ -45,15 +45,9 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: npm install
-
-#      - run: psql -c 'CREATE DATABASE circle_ci_test' -U postgres
-#
-#      - run: psql -c "CREATE USER test WITH PASSWORD 'test';" -U postgres
-
-#      - run: docker-compose up
-#
       - run: docker-compose run --rm web npm run createdb
+
+      - run: npm install
 
       - save_cache:
           paths:

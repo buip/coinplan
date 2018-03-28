@@ -53,7 +53,7 @@ jobs:
 
 #      - run: docker-compose up
 #
-#      - run: docker-compose run --rm web npm run createdb
+      - run: docker-compose run --rm web npm run createdb
 
       - save_cache:
           paths:

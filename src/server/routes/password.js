@@ -4,7 +4,7 @@ const crypto = require('crypto');
 const User = require('../models/User');
 const { validate } = require('jsonschema');
 const { log } = require('../log');
-
+const { resetPasswordInit } = require('../controllers/passwordController');
 const router = express.Router();
 
 router.put('/', async (req, res) => {
@@ -67,13 +67,8 @@ router.post('/:user_id', async (req, res) => {
 	} else {
 		try {
 			const email = req.params.user_id;
-			const user = await User.getByEmail(email);
-			if (user.length === 0) {
-				throw new Error('User not found');
-			} else {
-				const
-			}
-			res.json(rows);
+			await resetPasswordInit(email);
+			res.sendStatus(200);
 		} catch (err) {
 			log.info('Error while trying reset password', err);
 			res.sendStatus(400);

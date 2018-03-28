@@ -30,6 +30,7 @@ config.database = {
 config.secretToken = process.env.COINPLAN_TOKEN_SECRET;
 config.serverPort = process.env.COINPLAN_SERVER_PORT;
 config.logFile = process.env.COINPLAN_LOG_FILE || 'log.txt';
-config.email = process.env.COINPLAN_PASSWORD_EMAIL;
+config.sendingEmail = process.env.COINPLAN_SENDING_EMAIL;
+config.sendingEmailPassword = 'Malatak7';
 
 module.exports = config;

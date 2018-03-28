@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 const { validate } = require('jsonschema');
+const { log } = require('../log');
 
 const router = express.Router();
 
@@ -45,6 +46,36 @@ router.put('/', async (req, res) => {
 				success: false,
 				message: err.message
 			});
+		}
+	}
+});
+
+router.post('/:user_id', async (req, res) => {
+	const validParams = {
+		type: 'object',
+		maxProperties: 1,
+		required: ['user_id'],
+		properties: {
+			user_id: {
+				type: 'string'
+			}
+		}
+	};
+	if (!validate(req.params, validParams).valid) {
+		res.sendStatus(400);
+	} else {
+		try {
+			const email = req.params.user_id;
+			const user = await User.getByEmail(email);
+			if (user.length === 0) {
+				throw new Error('User not found');
+			} else {
+
+			}
+			res.json(rows);
+		} catch (err) {
+			log.info('Error while trying reset password', err);
+			res.sendStatus(400);
 		}
 	}
 });

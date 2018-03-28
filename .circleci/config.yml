@@ -45,7 +45,7 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: docker-compose run --rm web npm run createdb
+#      - run: docker-compose run --rm web npm run createdb
 
       - run: npm install
 

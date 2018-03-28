@@ -5,8 +5,8 @@ jobs:
       # specify the version you desire here
       - image: circleci/node:7.10
         enviroment:
-          COINPLAN_DB_HOST: localhost
-          COINPLAN_DB_PORT: 5432
+          PGHOST: localhost
+          PGUSER: 5432
           COINPLAN_TOKEN_SECRET: circle
           COINPLAN_SERVER_PORT: 3000
 
@@ -36,6 +36,8 @@ jobs:
 #      - run: psql -c 'CREATE DATABASE circle_ci_test' -U postgres
 #
 #      - run: psql -c "CREATE USER test WITH PASSWORD 'test';" -U postgres
+
+      - run: docker-compose up
 
       - run: docker-compose run --rm web npm run createdb
 

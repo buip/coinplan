@@ -49,7 +49,7 @@ jobs:
 
       - run: docker-compose up -d
 
-      - run: docker-compose run --rm web node ./src/server/services/createDB.js
+#      - run: docker-compose run --rm web node ./src/server/services/createDB.js
 
       # Download and cache dependencies
       - restore_cache:

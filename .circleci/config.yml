@@ -33,6 +33,12 @@ jobs:
 
       - run: npm install
 
+      - run: psql -c 'CREATE DATABASE circle_ci_test' -U postgres
+
+      - run: psql -c "CREATE USER test WITH PASSWORD 'test';" -U postgres
+
+      - run: docker-compose run --rm web npm run createdb
+
       - save_cache:
           paths:
             - node_modules

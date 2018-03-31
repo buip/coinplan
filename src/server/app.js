@@ -3,7 +3,7 @@ const users = require('./routes/users');
 const register = require('./routes/register');
 const login = require('./routes/login');
 const password = require('./routes/password');
-const bodyParser = require('body-parser');
+const  bodyParser = require('body-parser');
 
 const app = express();
 

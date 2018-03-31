@@ -52,7 +52,7 @@ class User {
      */
 	static async getByEmail(email) {
 		const row = await db.one(sqlFile('users/get_user_by_email.sql'), { email });
-		return new User(row.id, row.name, row.email, row.password_hash);
+		return new User(row.id, row.name, row.email, row.password_hash, row.password_token, row.password_token_time);
 	}
 
 	/**
@@ -65,9 +65,17 @@ class User {
 	}
 
 	/**
-     * Returns a promise to update a user's password
+     * Returns a promise to insert password token
      * @returns {Promise.<array.<User>>}
      */
+	static async insertPasswordToken(email, passwordToken) {
+		return db.none(sqlFile('users/update_user_password.sql'), { email, password_token: passwordToken });
+	}
+
+	/**
+	 * Returns a promise to update a user's password
+	 * @returns {Promise.<array.<User>>}
+	 */
 	static async updateUserPassword(email, passwordHash) {
 		return db.none(sqlFile('users/update_user_password.sql'), { email, password_hash: passwordHash });
 	}

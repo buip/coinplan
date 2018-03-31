@@ -10,5 +10,5 @@ CREATE TABLE IF NOT EXISTS users(
   created_at TIMESTAMP DEFAULT NOW() NOT NULL,
   auth_token CHAR(60),
   password_token CHAR(60),
-  password_token_time TIMESTAMP DEFAULT NOW()
+  password_token_time TIMESTAMP
 )

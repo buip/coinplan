@@ -16,11 +16,12 @@ class User {
      * @param passwordToken is the token send to user's email to reset password
      * @param passwordTokenTime is the time that password reset token expires
      */
-	constructor(id, name, email, passwordHash, authToken, passwordToken, passwordTokenTime) {
+	constructor(id, name, email, passwordHash, virtualAccountBalance, authToken, passwordToken, passwordTokenTime) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.passwordHash = passwordHash;
+		this.virtualAccountBalance = virtualAccountBalance;
 		this.authToken = authToken;
 		this.passwordToken = passwordToken;
 		this.passwordTokenTime = passwordTokenTime;

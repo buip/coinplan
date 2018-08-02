@@ -22,6 +22,8 @@ services:
             - COINPLAN_DB_PORT=5432
             - COINPLAN_TOKEN_SECRET=?
             - COINPLAN_LOG_FILE=log.txt
+            - COINBASE_API_KEY=?
+            - COINBASE_API_SECRET=?
         # Set the correct build environment.
         build: ./
         # Link to the database so the app can persist data

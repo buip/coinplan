@@ -40,7 +40,9 @@ async function createSchema() {
 	// We need to require these here instead of at the top to prevent circular dependency issues.
 	/* eslint-disable global-require */
 	const User = require('./User');
+	const Transaction = require('./Transaction');
 	await User.createTable();
+	await Transaction.createTable();
 }
 
 module.exports = {

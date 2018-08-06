@@ -31,5 +31,7 @@ config.secretToken = process.env.COINPLAN_TOKEN_SECRET;
 config.serverPort = process.env.COINPLAN_SERVER_PORT;
 config.logFile = process.env.COINPLAN_LOG_FILE || 'log.txt';
 config.email = process.env.COINPLAN_PASSWORD_EMAIL;
+config.coinbaseAPIKey = process.env.COINBASE_API_KEY;
+config.coinbaseAPISecret = process.env.COINBASE_API_SECRET;
 
 module.exports = config;

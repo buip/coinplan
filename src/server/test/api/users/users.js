@@ -4,12 +4,12 @@ const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 const request = require('supertest');
 
-const { recreateDB } = require('../db/common');
-const app = require('../../app');
-const User = require('../../models/User');
+const { recreateDB } = require('../../db/common');
+const app = require('../../../app');
+const User = require('../../../models/User');
 const {
 	iName, iEmail, insertUser
-} = require('./prepareUser');
+} = require('../utils/prepareUser');
 
 const mocha = require('mocha');
 

@@ -5,10 +5,10 @@ const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 const request = require('supertest');
 
-const { recreateDB } = require('../db/common');
-const app = require('../../app');
+const { recreateDB } = require('../../db/common');
+const app = require('../../../app');
 
-const { iEmail, iPassword, insertUser } = require('./prepareUser');
+const { iEmail, iPassword, insertUser } = require('../utils/prepareUser');
 
 const mocha = require('mocha');
 

@@ -1,7 +1,7 @@
-const User = require('../../models/User');
+const User = require('../../../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { secretToken } = require('../../config');
+const { secretToken } = require('../../../config');
 
 const iName = 'Preston';
 const iEmail = 'test@example.com';

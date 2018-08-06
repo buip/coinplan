@@ -34,8 +34,9 @@ class Transaction {
 	  * Returns a promise to create the transaction table
 	  * @returns {Promise.<>}
 	  */
-	static createTable() {
-		return db.none(sqlFile('users/create_transaction_table.sql'));
+	static async createTable() {
+		await db.none(sqlFile('transactions/create_transaction_types.sql'));
+		await db.none(sqlFile('transactions/create_transactions_table.sql'));
 	}
 
 	/**
@@ -44,12 +45,13 @@ class Transaction {
 	  * @returns {Promise.<Transaction>}
 	  */
 	static async getByID(id) {
-		const row = await db.one(sqlFile('users/get_user_by_id.sql'), { id });
+		const row = await db.one(sqlFile('transactions/get_transaction_by_id.sql'), { id });
 		return new Transaction(
 			row.id,
 			row.amount,
 			row.fee,
-			row.price, row.coin_type,
+			row.price,
+			row.coin_type,
 			row.currency_type,
 			row.transaction_type,
 			row.created_at,
@@ -63,7 +65,7 @@ class Transaction {
 	  * @returns {Promise.<User>}
 	  */
 	static async getByUser(userID) {
-		const rows = await db.any(sqlFile('users/get_transactions_by_user.sql'), { userID });
+		const rows = await db.any(sqlFile('transactions/get_all_transactions_by_user.sql'), { userID });
 		return rows.map(row => new Transaction(
 			row.id,
 			row.amount,
@@ -78,69 +80,15 @@ class Transaction {
 	}
 
 	/**
-	  * Returns a promise to get all of the user from the database
-	  * @returns {Promise.<array.<User>>}
-	  */
-	static async getAll() {
-		const rows = await db.any(sqlFile('users/get_all_users.sql'));
-		return rows.map(row => new Transaction(
-			row.id,
-			row.amount,
-			row.fee,
-			row.price, row.coin_type,
-			row.currency_type,
-			row.transaction_type,
-			row.created_at,
-			row.user_id
-		));
-	}
-
-	/**
-	  * Returns a promise to get all buy
-	  * @returns {Promise.<array.<Transaction>>}
-	  */
-	static async getAllBuy() {
-		const rows = await db.any(sqlFile('users/get_all_users.sql'));
-		return rows.map(row => new Transaction(
-			row.id,
-			row.amount,
-			row.fee,
-			row.price, row.coin_type,
-			row.currency_type,
-			row.transaction_type,
-			row.created_at,
-			row.user_id
-		));
-	}
-
-	/**
-	  * Returns a promise to get all sell
-	  * @returns {Promise.<array.<Transaction>>}
-	  */
-	static async getAllSell() {
-		const rows = await db.any(sqlFile('users/get_all_users.sql'));
-		return rows.map(row => new Transaction(
-			row.id,
-			row.amount,
-			row.fee,
-			row.price, row.coin_type,
-			row.currency_type,
-			row.transaction_type,
-			row.created_at,
-			row.user_id
-		));
-	}
-
-	/**
 	  * Returns a promise to insert this transaction into the database
 	  * @returns {Promise.<>}
 	  */
 	async insert() {
-		const user = this;
-		if (user.id !== undefined) {
-			throw new Error('Attempted to insert a user that already has an ID');
+		const transaction = this;
+		if (transaction.id !== undefined) {
+			throw new Error('Attempted to insert a transaction that already has an ID');
 		}
-		return db.none(sqlFile('users/insert_new_user.sql'), user);
+		return db.none(sqlFile('transactions/insert_new_transaction.sql'), transaction);
 	}
 }
 

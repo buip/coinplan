@@ -6,6 +6,7 @@
     "start": "node ./src/bin/www",
     "test": "./node_modules/.bin/mocha \"src/server/test/**/*.js\" --exit",
     "createdb": "node ./src/server/services/createDB.js",
+    "scrapeStock": "node ./src/server/services/scrapeStockInterface.js",
     "lint": "./node_modules/.bin/eslint src/server/**/*.js src/server/*.js"
   },
   "dependencies": {
@@ -24,10 +25,13 @@
     "lodash": "^4.17.5",
     "morgan": "~1.9.0",
     "node-cron": "^1.2.1",
+    "node-notifier": "^5.2.1",
+    "node-notifier-cli": "^1.1.2",
     "nodemailer": "^4.6.3",
     "passport": "^0.4.0",
     "pg-promise": "^7.4.1",
-    "serve-favicon": "~2.4.5"
+    "serve-favicon": "~2.4.5",
+    "web-push": "^3.3.2"
   },
   "devDependencies": {
     "chai": "^4.1.2",

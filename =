@@ -1,4 +1,0 @@
-
-> coinplan@0.0.0 scrapeStock /usr/src/app
-> node ./src/server/services/scrapeStockInterface.js "--" "26"
-

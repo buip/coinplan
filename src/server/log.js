@@ -41,9 +41,9 @@ class Logger {
      */
 	log(level, message, error = null) {
 		// eslint-disable-next-line no-console
-		console.log(message);
+		// console.log(message);
 		// eslint-disable-next-line no-console
-		console.log(error);
+		// console.log(error);
 		// Only log if given a high enough priority level.
 		if (level.priority > this.level.priority) {
 			return;

@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 const { ask, terminateReadline } = require('./utils');
-const { scrapeStockSchedule } = require('./scrapeStock');
+const { scrapeStockSchedule } = require('./scrapeStockSchedule');
 
 const regex = /^[a-zA-Z]+$/;
 
@@ -20,7 +20,7 @@ const regex = /^[a-zA-Z]+$/;
 			lessOrMore = await ask('Do you want to alert when it is greater than equal or less than? [>=|<] ');
 			if (lessOrMore === '>=' || lessOrMore === '<') {
 				target = await ask('What is your target price? ');
-				if (isNaN(target)) {
+				if (Number.isNaN(target)) {
 					terminateReadline('Invalid target price');
 				}
 			} else {
@@ -29,14 +29,15 @@ const regex = /^[a-zA-Z]+$/;
 		} else {
 			terminateReadline('Invalid input');
 		}
-
 	} else {
+		// eslint-disable-next-line
 		stockName = cmdArgs[2];
+		// eslint-disable-next-line
 		lessOrMore = cmdArgs[3];
+		// eslint-disable-next-line
 		target = cmdArgs[4];
 
-
-		if (!stockName.match(regex) || (lessOrMore !== '>=' && lessOrMore !== '<') || isNaN(target)) {
+		if (!stockName.match(regex) || (lessOrMore !== '>=' && lessOrMore !== '<') || Number.isNaN(target)) {
 			terminateReadline('Invalid input');
 		}
 	}

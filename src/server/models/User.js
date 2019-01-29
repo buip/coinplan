@@ -16,7 +16,7 @@ class User {
      * @param passwordToken is the token send to user's email to reset password
      * @param passwordTokenTime is the time that password reset token expires
      */
-	constructor(id, name, email, passwordHash, virtualAccountBalance, authToken, passwordToken, passwordTokenTime) {
+	constructor(id, name, email, passwordHash, virtualAccountBalance, watchList, stocksHold, authToken, passwordToken, passwordTokenTime) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
@@ -42,7 +42,7 @@ class User {
      */
 	static async getByID(id) {
 		const row = await db.one(sqlFile('users/get_user_by_id.sql'), { id });
-		return new User(row.id, row.name, row.email);
+		return new User(row.id, row.name, row.email, row.password_hash, row.virutal_account_balance);
 	}
 
 	/**
@@ -53,7 +53,7 @@ class User {
      */
 	static async getByEmail(email) {
 		const row = await db.one(sqlFile('users/get_user_by_email.sql'), { email });
-		return new User(row.id, row.name, row.email, row.password_hash);
+		return new User(row.id, row.name, row.email, row.password_hash, row.virutal_account_balance);
 	}
 
 	/**

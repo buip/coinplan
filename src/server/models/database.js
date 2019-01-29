@@ -41,8 +41,10 @@ async function createSchema() {
 	/* eslint-disable global-require */
 	const User = require('./User');
 	const Transaction = require('./Transaction');
+	const Stock = require('./Stock');
 	await User.createTable();
 	await Transaction.createTable();
+	await Stock.createTable();
 }
 
 module.exports = {

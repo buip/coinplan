@@ -1,0 +1,1 @@
+SELECT id, stock_name, stock_symbol FROM stocks;
